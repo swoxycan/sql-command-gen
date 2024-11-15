@@ -24,3 +24,10 @@ git clone https://github.com/swoxycc/sql-command-generator.git
 cd sql-command-generator
 python main.py
 ```
+## Siteye Ait Resimler
+
+![1](https://github.com/user-attachments/assets/4c0c6573-7b97-4cc0-9ca6-63b67bd7ae2b)
+
+![2](https://github.com/user-attachments/assets/2f6aef22-0d85-4968-9eb7-517588563630)
+
+
