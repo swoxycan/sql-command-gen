@@ -22,7 +22,7 @@ Aracı klonlayın ve aşağıdaki adımları izleyin:
 ```bash
 git clone https://github.com/swoxycc/sql-command-generator.git
 cd sql-command-generator
-python main.py
+python localhost.py
 ```
 ## Siteye Ait Resimler
 
