@@ -24,7 +24,3 @@ git clone https://github.com/swoxycc/sql-command-generator.git
 cd sql-command-generator
 python main.py
 ```
-
-## Lisans
-
-Bu proje MIT Lisansı ile lisanslanmıştır.
