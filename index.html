@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQLMap Command Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">SQLMap Command Generator</h1>
+            <button class="theme-toggle" onclick="toggleTheme()">
+                <span class="theme-icon">🌓</span>
+                <span class="theme-text">Toggle Theme</span>
+            </button>
+        </header>
+
+        <div class="grid">
+            <div class="card">
+                <h2>Target Options
+                    <span class="tooltip">
+                        <span class="info-icon">?</span>
+                        <span class="tooltiptext">Define your target URL or Google dork. At least one is required.</span>
+                    </span>
+                </h2>
+                <div class="form-group">
+                    <label for="url">Target URL:</label>
+                    <input type="text" id="url" placeholder="http://example.com/vuln.php?id=1">
+                </div>
+                <div class="form-group">
+                    <label for="google-dork">Google Dork:</label>
+                    <input type="text" id="google-dork" placeholder='inurl:".php?id=1"'>
+                </div>
+                <div class="form-group">
+                    <label for="data">POST Data:</label>
+                    <input type="text" id="data" placeholder="id=1&user=admin">
+                </div>
+                <div class="form-group">
+                    <label for="cookie">Cookie:</label>
+                    <input type="text" id="cookie" placeholder="PHPSESSID=abc123">
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Connection Options
+                    <span class="tooltip">
+                        <span class="info-icon">?</span>
+                        <span class="tooltiptext">Configure connection settings and anonymity options.</span>
+                    </span>
+                </h2>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="random-agent">
+                        <label for="random-agent">Random User-Agent</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="tor">
+                        <label for="tor">Use Tor Network</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="proxy">Proxy:</label>
+                    <input type="text" id="proxy" placeholder="http://127.0.0.1:8080">
+                </div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h2>Detection Options
+                    <span class="tooltip">
+                        <span class="info-icon">?</span>
+                        <span class="tooltiptext">Configure test levels and verbosity.</span>
+                    </span>
+                </h2>
+                <div class="form-group">
+                    <label for="level">Level (1-5):</label>
+                    <input type="number" id="level" min="1" max="5" value="1">
+                </div>
+                <div class="form-group">
+                    <label for="risk">Risk (1-3):</label>
+                    <input type="number" id="risk" min="1" max="3" value="1">
+                </div>
+                <div class="form-group">
+                    <label for="verbosity">Verbosity (0-6):</label>
+                    <input type="number" id="verbosity" min="0" max="6" value="1">
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Techniques
+                    <span class="tooltip">
+                        <span class="info-icon">?</span>
+                        <span class="tooltiptext">Select SQL injection techniques to test.</span>
+                    </span>
+                </h2>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="tech-b" checked>
+                        <label for="tech-b">Boolean-based (B)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="tech-e" checked>
+                        <label for="tech-e">Error-based (E)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="tech-u" checked>
+                        <label for="tech-u">Union-based (U)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="tech-s" checked>
+                        <label for="tech-s">Stacked (S)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="tech-t" checked>
+                        <label for="tech-t">Time-based (T)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="tech-q" checked>
+                        <label for="tech-q">Inline (Q)</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h2>Enumeration
+                    <span class="tooltip">
+                        <span class="info-icon">?</span>
+                        <span class="tooltiptext">Select data to extract from the database.</span>
+                    </span>
+                </h2>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="all">
+                        <label for="all">All (--all)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="banner">
+                        <label for="banner">Banner</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="current-user">
+                        <label for="current-user">Current User</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="current-db">
+                        <label for="current-db">Current DB</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="passwords">
+                        <label for="passwords">Passwords</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="dbs">
+                        <label for="dbs">Databases</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="tables">
+                        <label for="tables">Tables</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="columns">
+                        <label for="columns">Columns</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="schema">
+                        <label for="schema">Schema</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="dump">
+                        <label for="dump">Dump Data</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Advanced
+                    <span class="tooltip">
+                        <span class="info-icon">?</span>
+                        <span class="tooltiptext">Additional attack and system options.</span>
+                    </span>
+                </h2>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="os-shell">
+                        <label for="os-shell">OS Shell</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="os-pwn">
+                        <label for="os-pwn">OS Pwn</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="batch" checked>
+                        <label for="batch">Batch Mode</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="flush-session">
+                        <label for="flush-session">Flush Session</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="generateCommand()">Generate Command</button>
+        
+        <div class="card">
+            <h2>Generated Command</h2>
+            <div id="output"></div>
+            <button class="copy-btn" onclick="copyCommand()">Copy Command</button>
+        </div>
+
+        <footer class="footer">
+            <p>SQLmap Generator Made with Love by Swoxy 2024</p>
+            <p class="version">Version 1.0.0</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
